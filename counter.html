@@ -37,13 +37,13 @@
 
 <script>
     const increment = 11500000/12/30/24/60/60; // Increment in dollars per second
-    const startDate = new Date('2024-03-01T00:00:00'); // Replace with your desired start date
+    const startDate = new Date('2024-03-01T00:00:00'); 
 
     const counterElement = document.querySelector('.counter');
 
     function updateCounter() {
         const now = new Date();
-        const timeElapsed = Math.floor((now - startDate) / 1000); // Time elapsed in seconds since start date
+        const timeElapsed = Math.floor((now - startDate) / 1000); // Time elapsed in seconds since start date (original time difference is milliseconds)
         const counterValue = timeElapsed * increment;
         
         // Format the value with comma separation
