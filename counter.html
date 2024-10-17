@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Counter Based on Start Date</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .counter-container {
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 3em;
+            text-align: center;
+        }
+        .counter {
+            color: #4CAF50;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="counter-container">
+    <div>$<span class="counter">0.00</span></div>
+</div>
+
+<script>
+    const increment = 11500000/12/30/24/60/60; // Increment in dollars per second
+    const startDate = new Date('2024-03-01T00:00:00'); // Replace with your desired start date
+
+    const counterElement = document.querySelector('.counter');
+
+    function updateCounter() {
+        const now = new Date();
+        const timeElapsed = Math.floor((now - startDate) / 1000); // Time elapsed in seconds since start date
+        const counterValue = timeElapsed * increment;
+        
+        // Format the value with comma separation
+        const formattedValue = counterValue.toLocaleString('en-US', {
+            minimumFractionDigits: 2, 
+            maximumFractionDigits: 2
+        });
+
+        counterElement.textContent = formattedValue;
+    }
+
+    updateCounter(); // Update once immediately when the page loads
+    setInterval(updateCounter, 1000); // Update every second
+</script>
+
+</body>
+</html>
